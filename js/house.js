@@ -19,7 +19,9 @@ var app = new Vue({
       let filtered = this.members.filter(
         member =>
           this.checkFilter.includes(member.party) &&
-          (this.selectedState === member.state || this.selectedState === "All")
+          (this.selectedState === member.state ||
+            this.selectedState === "All" ||
+            this.selectedState === "")
       );
       this.members = filtered;
     }
