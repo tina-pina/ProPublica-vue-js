@@ -13,7 +13,6 @@ var app = new Vue({
   methods: {
     filterMembers: function(event) {
       this.members = this.originalMembers;
-
       // this.selectedState = this.distinctStatesArr;
       if (!this.members) return [];
       let filtered = this.members.filter(
@@ -25,6 +24,7 @@ var app = new Vue({
       );
       this.members = filtered;
     }
+
     // stateUpdated: function(event) {
     //   this.members = this.originalMembers;
     //   if (!this.distinctStatesArr) return [];

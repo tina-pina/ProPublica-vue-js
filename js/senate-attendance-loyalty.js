@@ -66,6 +66,7 @@ function getTop10percent(data, field) {
   );
 
   // Get min/max
+  //start with first Member of sorted array
   let minValue = sortedMembers[0][field];
   let maxValue = sortedMembers[sortedMembers.length - 1][field];
   let difference = maxValue - minValue;
@@ -146,6 +147,7 @@ function getTop10percentLoyalty(data) {
 
 function getBottom10percentAttendance(data) {
   let newArr = [];
+  //people who missed most votes will show up on top of the array
   let arr = getTop10percent(data, "missed_votes_pct");
 
   for (let m of arr) {
@@ -169,6 +171,8 @@ function getBottom10percentAttendance(data) {
 
 function getTop10percentAttendance(data) {
   let newArr = [];
+  //people who missed the least votes will show up on the bottom when sorted
+
   let arr = getBottom10percent(data, "missed_votes_pct");
 
   for (let m of arr) {

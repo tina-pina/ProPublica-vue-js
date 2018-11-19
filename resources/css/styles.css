@@ -49,3 +49,7 @@ img.logo-header2 {
 .checkbox-right label {
   width: 180px;
 }
+
+td {
+  font-weight: normal;
+}

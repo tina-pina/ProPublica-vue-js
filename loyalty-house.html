@@ -13,154 +13,171 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
         crossorigin="anonymous">
 
-    <title>Senate</title>
+    <title>House</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="page-header">
-            <div class="row justify-content-md-center w-80">
-                <div class="col-1"></div>
-                <div class="col">
-                    <p class="text-left"><img class="logo-header" src="resources/images/LogoMakr_39WZlC.png" class="fluid"
-                            alt="logo"></p>
-                </div>
-                <div class="col d-flex align-items-center justify-content-end">
-                    <p class="text-right"><i class="far fa-envelope"></i><a href="mailto:info@tgif.net">info@tgif.net</a></p>
-                </div>
-                <div class="col-1"></div>
+    <div id="app">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row justify-content-md-center w-80">
+                    <div class="col-1"></div>
+                    <div class="col">
+                        <p class="text-left"><img class="logo-header" src="resources/images/LogoMakr_39WZlC.png" class="fluid"
+                                alt="logo"></p>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-end">
+                        <p class="text-right"><i class="far fa-envelope"></i><a href="mailto:info@tgif.net">info@tgif.net</a></p>
+                    </div>
+                    <div class="col-1"></div>
 
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html"><i class="fas fa-home"></i></a>
-            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> -->
-            <span class="navbar-toggler-icon"></span>
-            </button>
+        <div class="container">
 
-            <div class>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Congress 113
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="house-data.html">House</a>
-                            <a class="dropdown-item" href="senate-data.html">Senate</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Attendance
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="attendance-house.html">House</a>
-                            <a class="dropdown-item" href="attendance-senate.html">Senate</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Party Loyalty
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="loyalty-house.html">House</a>
-                            <a class="dropdown-item" href="loyalty-senate.html">Senate</a>
-                        </div>
-                    </li>
-                </ul>        
-            </div>
-        </nav>
-        
-        
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="index.html"><i class="fas fa-home"></i></a>
+                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> -->
+                <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <div class="jumbotron mb-0">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pb-3">
-                    <h1>Party Loyalty</h1>
-                    <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively,
-                        tend to be the most faithful in voting for their party's nominee for office and legislation that backs
-                        their party's agenda. </p>
+                <div>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Congress 113
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="house-data.html">House</a>
+                                <a class="dropdown-item" href="senate-data.html">Senate</a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pb-3">
-                        <div class="col w-100">
-                            <h2>House at a glance</h2>
-                            <table id="senate-data-loyalty" class="table table-bordered table-striped table-hover table-sm">
-                                <caption>House at a glance</caption>
-                                <thead class="table-secondary text-center">
-                                    <tr>
-                                        <th>Party</th>
-                                        <th>No. of Reps</th>
-                                        <th>% Voted w/Party</th>
-                                    </tr>
-                                </thead>
-        
-                                <tbody id="senate-statistics">
-
-                                </tbody>
-                            </table>
-                        </div>
+                <div>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Attendance
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="attendance-house.html">House</a>
+                                <a class="dropdown-item" href="attendance-senate.html">Senate</a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-            <div class="row">
+
+                <div>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Party Loyalty
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="loyalty-house.html">House</a>
+                                <a class="dropdown-item" href="loyalty-senate.html">Senate</a>
+                            </div>
+                        </li>
+                    </ul>        
+                </div>
+            </nav>
+            
+        
+            <div class="jumbotron mb-0">
+                <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pb-3">
-                        <div class="col w-100">
-                            <h4>Least Loyal (Bottom 10 % of Party)</h4>
-                            <table id="senate-data" class="table table-bordered table-striped table-hover table-sm table-wrapper-scroll-y">
-                                <caption>House at a glance</caption>
-                                <thead class="table-secondary text-center">
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>No. Party Votes</th>
-                                        <th>% Party Votes</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="senate-bottom-loyalty" class="col w-100">
-                                </tbody>
-                            </table>
+                        <h1>Party Loyalty</h1>
+                        <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively,
+                            tend to be the most faithful in voting for their party's nominee for office and legislation that backs
+                            their party's agenda. </p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pb-3">
+                            <div class="col w-100">
+                                <h2>House at a glance</h2>
+                                <table id="senate-data-loyalty" class="table table-bordered table-striped table-hover table-sm table-wrapper-scroll-y">
+                                    <caption>House at a glance</caption>
+                                    <thead class="table-secondary text-center">
+                                        <tr>
+                                            <th>Party</th>
+                                            <th>No. of Reps</th>
+                                            <th>% Voted w/Party</th>
+                                        </tr>
+                                    </thead>
+            
+                                    <tbody id="senate-statistics" v-for="(value, key) in firstTableStatistics">
+                                        <tr>
+                                            <th>{{ key }}</th>
+                                            <td>{{ value.count }}</td>
+                                            <td>{{ value.averageVote }}</td>
+                                        </tr> 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pb-3">
+                            <div class="col w-100">
+                                <h4>Least Loyal (Bottom 10 % of Party)</h4>
+                                <table id="senate-data" class="table table-bordered table-striped table-hover table-sm table-wrapper-scroll-y">
+                                    <caption>House at a glance</caption>
+                                    <thead class="table-secondary text-center">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>No. Party Votes</th>
+                                            <th>% Party Votes</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="senate-bottom-loyalty" v-for="member in secondTableStatisticsLoyalty" class="col w-100">
+                                        <tr>
+                                            <td>{{member.full_name}}</td>
+                                            <td>{{member.computed_votes}}</td>
+                                            <td>{{member.votes_with_party_pct}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+            
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pb-3">
+                            <div class="col w-100">
+                                <h4>Most Loyal (Top 10 % of Party)</h4>
+                                <table id="senate-data" class="table table-bordered table-striped table-hover table-sm table-wrapper-scroll-y">
+                                    <caption>House at a glance</caption>
+                                    <thead class="table-secondary text-center">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>No. Party Votes</th>
+                                            <th>% Party Votes</th>
+                                        </tr>
+                                    </thead>
+            
+                                    <tbody id="senate-top-loyalty" class="col w-100"  v-for="member in thirdTableStatisticsLoyalty">
+                                        <tr>
+                                            <td>{{member.full_name}}</td>
+                                            <td>{{member.computed_votes}}</td>
+                                            <td>{{member.votes_with_party_pct}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
         
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pb-3">
-                        <div class="col w-100">
-                            <h4>Most Loyal (Top 10 % of Party)</h4>
-                            <table id="senate-data" class="table table-bordered table-striped table-hover table-sm table-wrapper-scroll-y">
-                                <caption>House at a glance</caption>
-                                <thead class="table-secondary text-center">
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>No. Party Votes</th>
-                                        <th>% Party Votes</th>
-                                    </tr>
-                                </thead>
-        
-                                <tbody id="senate-top-loyalty" class="col w-100">
+                </div>
 
-                                </tbody>
-                            </table>
-                        </div>
+                <div class="navbar bg-light w-100">
+                    <div class="col">
+                        <p class="text-center">&copy;2018 TGIF || All Rights Reserved</p>
                     </div>
-            </div>
-    
-        </div>
-
-        <div class="navbar bg-light w-100">
-            <div class="col">
-                <p class="text-center">&copy;2018 TGIF || All Rights Reserved</p>
+                </div>
             </div>
         </div>
 

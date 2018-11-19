@@ -36,6 +36,7 @@
             </div>
         </div>
         <div class="container">
+
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="index.html"><i class="fas fa-home"></i></a>
                 <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -115,7 +116,7 @@
         
                                 <tbody id="senate-body" v-for="(value, key) in firstTableStatistics">
                                     <tr>
-                                        <td>{{ key }}</td>
+                                        <th>{{ key }}</th>
                                         <td>{{ value.count }}</td>
                                         <td>{{ value.averageVote }}</td>
                                     </tr>
@@ -138,10 +139,12 @@
                                     </tr>
                                 </thead>
                                 <tbody id="senate-bottom-attendance" v-for="member in secondTableStatisticsAttendance" class="col w-100">
-                                        <th>{{member.full_name}}</th>
-                                        <th>{{member.computed_votes}}</th>
-                                        <th>{{member.missed_votes_pct}}</th>
-                                    </tbody>
+                                    <tr>
+                                        <td>{{member.full_name}}</td>
+                                        <td>{{member.computed_votes}}</td>
+                                        <td>{{member.missed_votes_pct}}</td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -158,9 +161,11 @@
                                     </tr>
                                 </thead>
                                 <tbody id="senate-top-attendance" v-for="member in thirdTableStatisticsAttendance" class="col w-100">
-                                    <th>{{member.full_name}}</th>
-                                    <th>{{member.computed_votes}}</th>
-                                    <th>{{member.missed_votes_pct}}</th>
+                                    <tr>
+                                        <td>{{member.full_name}}</td>
+                                        <td>{{member.computed_votes}}</td>
+                                        <td>{{member.missed_votes_pct}}</td>
+                                    </tr>
                                 </tbody>
 
                             </table>

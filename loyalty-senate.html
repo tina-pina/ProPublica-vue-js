@@ -41,7 +41,7 @@
         <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class>
+        <div>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,7 +54,7 @@
             </li>
           </ul>
         </div>
-        <div class>
+        <div>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,7 +67,8 @@
             </li>
           </ul>
         </div>
-        <div class>
+
+        <div>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -105,9 +106,11 @@
                 </thead>
 
                 <tbody id="senate-statistics" v-for="(value, key) in firstTableStatistics">
-                  <td>{{ key }}</td>
-                  <td>{{ value.count }}</td>
-                  <td>{{ value.averageVote }}</td>
+                  <tr>
+                    <th>{{ key }}</th>
+                    <td>{{ value.count }}</td>
+                    <td>{{ value.averageVote }}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -169,7 +172,6 @@
           <p class="text-center">&copy;2018 TGIF || All Rights Reserved</p>
         </div>
       </div>
-
     </div>
   </div>
 
