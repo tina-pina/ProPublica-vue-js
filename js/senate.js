@@ -5,8 +5,8 @@ var app = new Vue({
       originalMembers: [],
       members: [],
 
-      checkFilter: ["R", "D", "I"],
-      selectedState: ""
+      checkFilter: [],
+      selectedState: "All"
     };
   },
   computed: {
@@ -23,7 +23,6 @@ var app = new Vue({
   methods: {
     filterMembers: function(event) {
       this.members = this.originalMembers;
-      // this.selectedState = this.distinctStatesArr;
       if (!this.members) return [];
       let filtered = this.members.filter(
         member =>
@@ -40,21 +39,21 @@ var app = new Vue({
     // can access it inside the promise function
     let url = "https://api.propublica.org/congress/v1/115/senate/members.json";
     let header = { "X-API-Key": "ZlZ25b3xtchqkU2LCzIvnUJKgXXev7Z71IxHvTM2" };
-    var vm = this;
 
     fetch(url, { headers: header })
-      .then(function(response) {
+      .then(response => {
         if (response.ok) {
           console.log("Request succeeded: " + response.statusText);
           return response.json();
         }
+
         throw new Error(response.statusText);
       })
-      .then(function(json) {
-        vm.originalMembers = json.results[0].members;
-        vm.members = json.results[0].members;
+      .then(json => {
+        this.originalMembers = json.results[0].members;
+        this.members = json.results[0].members;
       })
-      .catch(function(error) {
+      .catch(error => {
         console.log("Request failed: " + error.message);
       });
   }
