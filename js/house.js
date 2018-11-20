@@ -5,9 +5,19 @@ var app = new Vue({
       originalMembers: [],
       members: [],
       checkFilter: ["R", "D", "I"],
-      distinctStatesArr: [],
       selectedState: ""
     };
+  },
+
+  computed: {
+    distinctStatesArr: function() {
+      let distinctStatesArr = [];
+      let allStates = this.originalMembers.map(m => m.state);
+      for (let s of allStates) {
+        if (!distinctStatesArr.includes(s)) distinctStatesArr.push(s);
+      }
+      return distinctStatesArr.sort();
+    }
   },
 
   methods: {
@@ -25,15 +35,6 @@ var app = new Vue({
       );
       this.members = filtered;
     }
-    // stateUpdated: function(event) {
-    //   this.members = this.originalMembers;
-    //   if (!this.distinctStatesArr) return [];
-    //   console.log(this.selectedState);
-    //   let filtered = this.members.filter(member =>
-    //     this.selectedState.includes(member.state)
-    //   );
-    //   this.members = filtered;
-    // }
   },
 
   created: function() {
@@ -57,12 +58,6 @@ var app = new Vue({
 
         vm.originalMembers = json.results[0].members;
         vm.members = json.results[0].members;
-
-        for (let m of json.results[0].members) {
-          if (!vm.distinctStatesArr.includes(m.state))
-            vm.distinctStatesArr.push(m.state);
-        }
-        vm.distinctStatesArr = vm.distinctStatesArr.sort();
       })
       .catch(function(error) {
         console.log("Request failed: " + error.message);

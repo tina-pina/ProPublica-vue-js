@@ -119,7 +119,7 @@ function getBottom10percentLoyalty(data) {
 
     newArr.push(newObj);
   }
-  console.log(newArr);
+  // console.log(newArr);
   return newArr;
 }
 
@@ -141,7 +141,7 @@ function getTop10percentLoyalty(data) {
 
     newArr.push(newObj);
   }
-  console.log(newArr);
+  // console.log(newArr);
   return newArr;
 }
 
