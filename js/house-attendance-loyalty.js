@@ -66,10 +66,9 @@ var app = new Vue({
     },
 
     getTop10percent(data, field) {
-      let sortedMembers = data.results[0].members.sort(
-        (x, y) => x[field] - y[field]
-      );
-      // .filter(m => m[field] !== 0);
+      let sortedMembers = data.results[0].members
+        .sort((x, y) => x[field] - y[field])
+        .filter(m => m[field] !== 0);
 
       let tenPerMembersArr = sortedMembers.slice(
         sortedMembers.length - Math.floor(sortedMembers.length / 10),
@@ -89,14 +88,13 @@ var app = new Vue({
       // for (let member of sortedMembers) {
       //   if (member[field] >= tenPercentLimit) tenPerMembersArr.push(member);
       // }
-      return tenPerMembersArr.sort((x, y) => -x[field] + y[field]);
+      return tenPerMembersArr.sort((x, y) => x[field] - y[field]);
     },
 
     getBottom10percent(data, field) {
-      let sortedMembers = data.results[0].members.sort(
-        (x, y) => x[field] - y[field]
-      );
-      // .filter(m => m[field] !== 0);
+      let sortedMembers = data.results[0].members
+        .sort((x, y) => x[field] - y[field])
+        .filter(m => m[field] !== 0);
 
       let tenPerMembersArr = sortedMembers.slice(
         0,
