@@ -69,40 +69,52 @@ var app = new Vue({
       let sortedMembers = data.results[0].members.sort(
         (x, y) => x[field] - y[field]
       );
+      // .filter(m => m[field] !== 0);
+
+      let tenPerMembersArr = sortedMembers.slice(
+        sortedMembers.length - Math.floor(sortedMembers.length / 10),
+        sortedMembers.length
+      );
 
       // Get min/max
       //start with first Member of sorted array
-      let minValue = sortedMembers[0][field];
-      let maxValue = sortedMembers[sortedMembers.length - 1][field];
-      let difference = maxValue - minValue;
+      // let minValue = sortedMembers[0][field];
+      // let maxValue = sortedMembers[sortedMembers.length - 1][field];
+      // let difference = maxValue - minValue;
 
-      // Calculate the limit for 10%
-      let tenPerMembersArr = [];
-      // Get all the member`s in the top 10 %
-      let tenPercentLimit = maxValue - difference / 10;
-      for (let member of sortedMembers) {
-        if (member[field] >= tenPercentLimit) tenPerMembersArr.push(member);
-      }
-      return tenPerMembersArr.sort((x, y) => x[field] - y[field]);
+      // // Calculate the limit for 10%
+      // let tenPerMembersArr = [];
+      // // Get all the member`s in the top 10 %
+      // let tenPercentLimit = maxValue - difference / 10;
+      // for (let member of sortedMembers) {
+      //   if (member[field] >= tenPercentLimit) tenPerMembersArr.push(member);
+      // }
+      return tenPerMembersArr.sort((x, y) => -x[field] + y[field]);
     },
 
     getBottom10percent(data, field) {
       let sortedMembers = data.results[0].members.sort(
         (x, y) => x[field] - y[field]
       );
+      // .filter(m => m[field] !== 0);
+
+      let tenPerMembersArr = sortedMembers.slice(
+        0,
+        Math.floor(sortedMembers.length / 10)
+      );
 
       // Get min/max
-      let minValue = sortedMembers[0][field];
-      let maxValue = sortedMembers[sortedMembers.length - 1][field];
-      let difference = maxValue - minValue;
+      // let minValue = sortedMembers[0][field];
+      // let maxValue = sortedMembers[sortedMembers.length - 1][field];
+      // let difference = maxValue - minValue;
 
-      // Calculate the limit for 10%
-      let tenPerMembersArr = [];
-      // Get all the member's in the bottom 10%
-      let tenPercentLimit = minValue + difference / 10;
-      for (let member of sortedMembers) {
-        if (member[field] <= tenPercentLimit) tenPerMembersArr.push(member);
-      }
+      // // Calculate the limit for 10%
+      // let tenPerMembersArr = [];
+      // // Get all the member's in the bottom 10%
+      // let tenPercentLimit = minValue + difference / 10;
+      // for (let member of sortedMembers) {
+      //   if (member[field] <= tenPercentLimit) tenPerMembersArr.push(member);
+      // }
       return tenPerMembersArr.sort((x, y) => x[field] - y[field]);
     },
 
@@ -219,7 +231,7 @@ var app = new Vue({
   created: function() {
     // Alias the component instance as `vm`, so that we
     // can access it inside the promise function
-    let url = "https://api.propublica.org/congress/v1/115/house/members.json";
+    let url = "https://api.propublica.org/congress/v1/113/house/members.json";
     let header = { "X-API-Key": "ZlZ25b3xtchqkU2LCzIvnUJKgXXev7Z71IxHvTM2" };
 
     fetch(url, { headers: header })
