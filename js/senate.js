@@ -26,7 +26,8 @@ var app = new Vue({
       if (!this.members) return [];
       let filtered = this.members.filter(
         member =>
-          this.checkFilter.includes(member.party) &&
+          (this.checkFilter.length === 0 ||
+            this.checkFilter.includes(member.party)) &&
           (this.selectedState === member.state ||
             this.selectedState === "All" ||
             this.selectedState === "")
@@ -35,8 +36,6 @@ var app = new Vue({
     }
   },
   created: function() {
-    // Alias the component instance as `vm`, so that we
-    // can access it inside the promise function
     let url = "https://api.propublica.org/congress/v1/115/senate/members.json";
     let header = { "X-API-Key": "ZlZ25b3xtchqkU2LCzIvnUJKgXXev7Z71IxHvTM2" };
 

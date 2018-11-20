@@ -15,84 +15,6 @@ Average of Votes: Republican, Democrat, Independence, All
 Number of members: Republican, Democrat, Independence, All
 */
 
-function countMembers(data, partyName, countAll) {
-  let count = 0;
-  for (let i = 0; i < data.results[0].num_results; i++) {
-    let party = data.results[0].members[i].party;
-    if (countAll || party === partyName) count++;
-  }
-  return count;
-}
-
-function averageVotes(data, partyName, countAll) {
-  //create empty array for specific party votes
-  let votesArray = [];
-
-  //iterate over all data to find all party
-  for (let i = 0; i < data.results[0].num_results; i++) {
-    let party = data.results[0].members[i].party;
-    // if the party is the specific party
-    if (countAll || party === partyName) {
-      //loop over party to get the votes if the party is R, D or I
-      let v = data.results[0].members[i]["votes_with_party_pct"];
-
-      if (v === undefined) v = 0.0;
-
-      votesArray.push(v);
-    }
-  }
-  if (votesArray.length === 0) return 0.0;
-  for (let votes of votesArray) {
-    if (votes === undefined) votes = 0.0;
-  }
-
-  // calculate average
-  let sum = 0.0;
-  for (let voteNum of votesArray) sum += voteNum;
-  return sum / votesArray.length;
-}
-
-function getTop10percent(data, field) {
-  let sortedMembers = data.results[0].members.sort(
-    (x, y) => x[field] - y[field]
-  );
-
-  // Get min/max
-  //start with first Member of sorted array
-  let minValue = sortedMembers[0][field];
-  let maxValue = sortedMembers[sortedMembers.length - 1][field];
-  let difference = maxValue - minValue;
-
-  // Calculate the limit for 10%
-  let tenPerMembersArr = [];
-  // Get all the member`s in the top 10 %
-  let tenPercentLimit = maxValue - difference / 10;
-  for (let member of sortedMembers) {
-    if (member[field] >= tenPercentLimit) tenPerMembersArr.push(member);
-  }
-  return tenPerMembersArr;
-}
-
-function getBottom10percent(data, field) {
-  let sortedMembers = data.results[0].members.sort(
-    (x, y) => x[field] - y[field]
-  );
-
-  // Get min/max
-  let minValue = sortedMembers[0][field];
-  let maxValue = sortedMembers[sortedMembers.length - 1][field];
-  let difference = maxValue - minValue;
-
-  // Calculate the limit for 10%
-  let tenPerMembersArr = [];
-  // Get all the member's in the bottom 10%
-  let tenPercentLimit = minValue + difference / 10;
-  for (let member of sortedMembers) {
-    if (member[field] <= tenPercentLimit) tenPerMembersArr.push(member);
-  }
-  return tenPerMembersArr;
-}
-
 var app = new Vue({
   el: "#app",
   data() {
@@ -106,30 +28,108 @@ var app = new Vue({
   },
 
   methods: {
+    countMembers(data, partyName, countAll) {
+      let count = 0;
+      for (let i = 0; i < data.results[0].num_results; i++) {
+        let party = data.results[0].members[i].party;
+        if (countAll || party === partyName) count++;
+      }
+      return count;
+    },
+
+    averageVotes(data, partyName, countAll) {
+      //create empty array for specific party votes
+      let votesArray = [];
+
+      //iterate over all data to find all party
+      for (let i = 0; i < data.results[0].num_results; i++) {
+        let party = data.results[0].members[i].party;
+        // if the party is the specific party
+        if (countAll || party === partyName) {
+          //loop over party to get the votes if the party is R, D or I
+          let v = data.results[0].members[i]["votes_with_party_pct"];
+
+          if (v === undefined) v = 0.0;
+
+          votesArray.push(v);
+        }
+      }
+      if (votesArray.length === 0) return 0.0;
+      for (let votes of votesArray) {
+        if (votes === undefined) votes = 0.0;
+      }
+
+      // calculate average
+      let sum = 0.0;
+      for (let voteNum of votesArray) sum += voteNum;
+      return sum / votesArray.length;
+    },
+
+    getTop10percent(data, field) {
+      let sortedMembers = data.results[0].members.sort(
+        (x, y) => x[field] - y[field]
+      );
+
+      // Get min/max
+      //start with first Member of sorted array
+      let minValue = sortedMembers[0][field];
+      let maxValue = sortedMembers[sortedMembers.length - 1][field];
+      let difference = maxValue - minValue;
+
+      // Calculate the limit for 10%
+      let tenPerMembersArr = [];
+      // Get all the member`s in the top 10 %
+      let tenPercentLimit = maxValue - difference / 10;
+      for (let member of sortedMembers) {
+        if (member[field] >= tenPercentLimit) tenPerMembersArr.push(member);
+      }
+      return tenPerMembersArr.sort((x, y) => x[field] - y[field]);
+    },
+
+    getBottom10percent(data, field) {
+      let sortedMembers = data.results[0].members.sort(
+        (x, y) => x[field] - y[field]
+      );
+
+      // Get min/max
+      let minValue = sortedMembers[0][field];
+      let maxValue = sortedMembers[sortedMembers.length - 1][field];
+      let difference = maxValue - minValue;
+
+      // Calculate the limit for 10%
+      let tenPerMembersArr = [];
+      // Get all the member's in the bottom 10%
+      let tenPercentLimit = minValue + difference / 10;
+      for (let member of sortedMembers) {
+        if (member[field] <= tenPercentLimit) tenPerMembersArr.push(member);
+      }
+      return tenPerMembersArr.sort((x, y) => x[field] - y[field]);
+    },
+
     getFirstTableStat(json) {
       return {
         Democrats: {
-          count: countMembers(json, "D", false),
-          averageVote: Number(averageVotes(json, "D", false).toFixed(2))
+          count: this.countMembers(json, "D", false),
+          averageVote: Number(this.averageVotes(json, "D", false).toFixed(2))
         },
         Republicans: {
-          count: countMembers(json, "R", false),
-          averageVote: Number(averageVotes(json, "R", false).toFixed(2))
+          count: this.countMembers(json, "R", false),
+          averageVote: Number(this.averageVotes(json, "R", false).toFixed(2))
         },
         Independents: {
-          count: countMembers(json, "I", false),
-          averageVote: Number(averageVotes(json, "I", false).toFixed(2))
+          count: this.countMembers(json, "I", false),
+          averageVote: Number(this.averageVotes(json, "I", false).toFixed(2))
         },
         Total: {
-          count: countMembers(json, "", true),
-          averageVote: Number(averageVotes(json, "", true).toFixed(2))
+          count: this.countMembers(json, "", true),
+          averageVote: Number(this.averageVotes(json, "", true).toFixed(2))
         }
       };
     },
     getBottom10percentAttendance(data) {
       let newArr = [];
       //people who missed most votes will show up on top of the array
-      let arr = getTop10percent(data, "missed_votes_pct");
+      let arr = this.getTop10percent(data, "missed_votes_pct");
 
       for (let m of arr) {
         let computed_votes = Math.floor(
@@ -154,7 +154,7 @@ var app = new Vue({
       let newArr = [];
       //people who missed the least votes will show up on the bottom when sorted
 
-      let arr = getBottom10percent(data, "missed_votes_pct");
+      let arr = this.getBottom10percent(data, "missed_votes_pct");
 
       for (let m of arr) {
         let computed_votes = Math.floor(
@@ -176,7 +176,7 @@ var app = new Vue({
     },
     getBottom10percentLoyalty(data) {
       let newArr = [];
-      let arr = getBottom10percent(data, "votes_with_party_pct");
+      let arr = this.getBottom10percent(data, "votes_with_party_pct");
       for (let m of arr) {
         let computed_votes = Math.floor(
           Number((m.votes_with_party_pct * m.total_votes) / 100)
@@ -196,7 +196,7 @@ var app = new Vue({
     },
     getTop10percentLoyalty(data) {
       let newArr = [];
-      let arr = getTop10percent(data, "votes_with_party_pct");
+      let arr = this.getTop10percent(data, "votes_with_party_pct");
       for (let m of arr) {
         let computed_votes = Math.floor(
           Number((m.votes_with_party_pct * m.total_votes) / 100)
